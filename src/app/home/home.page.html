@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-icon size="large" name="barcode" (click)="scanCode()"></ion-icon>
+        <p style="margin-left:10px;">Código Escaneado: {{scannedResult}}</p>
+    </ion-buttons>
+    <ion-buttons slot="end">
+        <ion-icon (click)="logoutUser()" size="large" name="exit"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+    <ion-fab vertical="center" horizontal="center" slot="fixed">
+        <ion-fab-button (click)="scanCode()">
+          <ion-icon size="large" name="barcode"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

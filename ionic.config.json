@@ -1,0 +1,13 @@
+{
+  "name": "NewVarietiesPoll",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "https://api.lopez.com/api"
+    }
+  ]
+}

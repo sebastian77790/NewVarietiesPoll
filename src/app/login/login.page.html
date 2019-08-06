@@ -1,0 +1,68 @@
+<ion-content color="primary">
+    <ion-row class="logo-row">
+      <ion-col></ion-col>
+      <ion-col width-67>
+        <img src="/assets/300x200.png"/><!--http://placehold.it/300x200-->
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  
+  <form #form="ngForm" (ngSubmit)="loginUser()">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+            <ion-item>
+              <ion-input [(ngModel)]="Login.Name" id="inputName" name="name" type="text" placeholder="{{Name}}" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="Login.Email" id="inputEmail" name="email" type="text" placeholder="{{Email}}" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="Login.Company" id="inputCompany" name="text" type="text" placeholder="{{Company}}"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-select style="padding-left: 0px;" [(ngModel)]="language" [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="{{Select}}" (ionChange)="changeLanguage($event)" ngDefaultControl name="fieldName">
+                <ion-select-option value="es">{{Languages.sp}}</ion-select-option>
+                <ion-select-option value="en">{{Languages.en}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <!-- <ion-item>
+              <ion-input [(ngModel)]="Login.CodeVerify" id="inputCode" name="code" type="text" placeholder="{{SecurityCode}}" ngModel required></ion-input>
+            </ion-item> -->
+          </div>
+          <div padding>
+            <ion-button size="large" type="button" [disabled]="form.invalid" (click)="loginUser()" expand="block" color="tertiary">{{Enter}}</ion-button>
+          </div>
+          <!-- <div>
+            <ion-row color="primary" justify-content-center>
+              <ion-col align-self-center size-md="6" size-lg="5" size-xs="5">
+                <ion-item>
+                  <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="{{Select}}" ionChange="changeLanguage()">
+                    <ion-select-option [(ngModel)]="language" value="es"  selected>{{Languages.sp}}</ion-select-option>
+                    <ion-select-option [(ngModel)]="language" value="en" >{{Languages.en}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </div>         -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="openModal()">
+        <ion-icon name="arrow-dropup-circle"></ion-icon>
+      </ion-fab-button>
+    </ion-fab> -->
+  </form>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="secondary" [disabled]="form.invalid" (click)="cleanUser()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>
+
+
+  <!-- <p *ngIf="dataReturned">{{dataReturned}}</p> -->
+  
+   
+</ion-content>

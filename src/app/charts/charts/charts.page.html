@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Resultados</ion-title>
+    <ion-buttons slot="start">
+      <ion-icon [routerLink]="['/home']" size="large" name="home" routerDirection="backward"></ion-icon><!--defaultHref="/"  <ion-img src="/assets/icon/favicon.png"></ion-img>-->
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon (click)="logoutUser()" size="large" name="exit"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="chart1"></div>
+</ion-content>

@@ -1,0 +1,126 @@
+<!--<ion-list *ngIf="cards.length > 0">-->
+    
+<ion-slides pager="true" [options]="slideOpts" #slidesPoll color="medium">
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button (click)="this.slides.slidePrev()">
+      <ion-icon name="arrow-back" ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-slide *ngFor="let question of questions" class="step-one">
+    <ion-grid *ngIf="question.questionType == 0">
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <p color="dark">{{question.text}}</p>
+          </div>
+          <div >
+            <ion-item *ngFor="let option of question.options">
+              <ion-label>{{option.text}}</ion-label>
+              <ion-checkbox color="primary" [id]="option.id" [name]="option.id" value="option.id" [(ngModel)]="option.isChecked"></ion-checkbox>
+            </ion-item>
+
+            <!-- <ion-item>
+                <ion-label>Color</ion-label>
+                <ion-checkbox color="primary"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                <ion-label>Tintura</ion-label>
+                <ion-checkbox color="secondary"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                <ion-label>Ciclo</ion-label>
+                <ion-checkbox color="danger"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                <ion-label>Follaje</ion-label>
+                <ion-checkbox color="light"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                <ion-label>Tamaño</ion-label>
+                <ion-checkbox color="dark"></ion-checkbox>
+              </ion-item> -->
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="question.questionType == 1">
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <p color="dark">{{question.text}}</p>
+          </div>
+          <div  color="medium">
+            <ion-list>
+              <ion-radio-group [(ngModel)]="Option">
+                <ion-item *ngFor="let option of question.options">
+                  <ion-label>{{option.text}}</ion-label>
+                  <ion-radio color="dark" slot="start" value="INV1"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ion-list>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="question.questionType == 4">
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <p color="dark">{{question.text}}</p>
+          </div>
+          <div >
+            <ion-item color="medium">
+              <ion-range
+                [(ngModel)]="Range"
+                min="1"
+                max="10"
+                snaps="true"
+                color="tertiary"
+                pin="true"
+              >
+                <ion-label slot="start"><ion-icon name="sad" color="warning" size="large"></ion-icon></ion-label>
+                <ion-label slot="end"><ion-icon name="happy" color="success" size="large"></ion-icon></ion-label>
+              </ion-range>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-slide>
+
+  <ion-slide class="step-one">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <p color="dark">Comentarios finales</p>
+          </div>
+          <div >
+            <ion-item>
+              <ion-textarea
+                clearOnEdit="true"
+                [(ngModel)]="Comments"
+              ></ion-textarea>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-button (click)="sendPoll(1)">{{Send}}!</ion-button>
+      <!-- <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <ion-button (click)="sendPoll(2)">Finalizar</ion-button>
+          </div>
+        </ion-col>
+      </ion-row> -->
+    </ion-grid>
+  </ion-slide>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="slideChanged()">
+      <ion-icon name="arrow-forward"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-slides>

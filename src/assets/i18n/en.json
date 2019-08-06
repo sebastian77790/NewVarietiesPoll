@@ -1,0 +1,15 @@
+{
+"ENTER": "LOG IN",
+"TITLE": "Insert Data",
+"NAME": "Name",
+"EMAIL": "Email",
+"COMPANY": "Company",
+"SECURITYCODE": "Security Code",
+"SELECT": "Select a Option",
+"LANGUAGES": {"SP": "Spanish", "EN": "English", "OPT": "Language"},
+"USERTERMS": "User Terms",
+"USERTERMS_TEXT": "By touching the arrow below, you agree to the Terms of Use and Privacy Policies",
+"USERTERMS_MORE": "For more information, see",
+"USERTERMS_LINK": "Terms of Use and Privacy Policies",
+"SEND": "Send Answers"
+}

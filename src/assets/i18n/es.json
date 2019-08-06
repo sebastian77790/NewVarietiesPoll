@@ -1,0 +1,15 @@
+{
+"ENTER": "Ingresar",
+"TITLE": "Ingresa los datos",
+"NAME": "Nombres",
+"EMAIL": "Correo",
+"COMPANY": "Empresa",
+"SECURITYCODE": "Código de Seguridad",
+"SELECT": "Selecciona una Opción",
+"LANGUAGES": {"SP": "Español", "EN": "Inglés", "OPT": "Idioma"},
+"USERTERMS": "Términos de Uso",
+"USERTERMS_TEXT": "Al tocar la flecha de abajo, aceptas los Términos de uso y las Políticas de privacidad",
+"USERTERMS_MORE": "Para obtener más información, consulta",
+"USERTERMS_LINK": "Términos y condiciones y Política de Privacidad",
+"SEND": "Enviar Respuestas"
+}

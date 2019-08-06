@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/"></ion-back-button>
+        </ion-buttons>
+    <ion-title>codedetail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <!-- <img [src]="cardDetailed.img" (error)="updateImage($event)"/> -->
+        <ion-card-header text-wrap>
+          <ion-card-subtitle>{{ codeinfo[0].ComercialName }}</ion-card-subtitle>
+          <ion-card-title>{{ codeinfo[0].INVCodeId }} </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p><b>Color: </b>{{codeinfo[0].ColorName ? codeinfo[0].ColorName : codeinfo[0].INVColorName}}</p>
+          <p><b>Fecha: </b>{{codeinfo[0].PlantingDate}}</p>
+          <p><b>Producto: </b>{{codeinfo[0].Product}}</p>
+          <p><b>Consecutivo: </b>{{codeinfo[0].LabelConsecutive}}</p>
+          <p><b>Bloque: </b>{{codeinfo[0].FullCode}}</p>
+            <!-- HyBrider -->
+        </ion-card-content>
+      </ion-card>
+</ion-content>
