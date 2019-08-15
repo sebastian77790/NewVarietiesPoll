@@ -11,5 +11,19 @@
 "USERTERMS_TEXT": "Al tocar la flecha de abajo, aceptas los Términos de uso y las Políticas de privacidad",
 "USERTERMS_MORE": "Para obtener más información, consulta",
 "USERTERMS_LINK": "Términos y condiciones y Política de Privacidad",
-"SEND": "Enviar Respuestas"
+"SEND": "Enviar Respuestas",
+"SCANNEDCODE": "Código Escaneado",
+"FAVORITE": "Favoritos",
+"FAVORITEADDED": "Agregado a favoritos",
+"VARIETYDETAIL": "Detalle de la variedad",
+"ERROR": "Ocurrió un Error",
+"INFONOTFOUND": "No se encontró la información",
+"CODENOTFOUND": "Código Erroneo",
+"SELECTATLEATSONE": "Selecciona al menos una opción o llena algun dato",
+"USERCLEANED": "Usuario Limpiado",
+"ANSWERSEND": "Respuesta Enviada",
+"SCANLABEL": "Escanea la etiqueta",
+"THANKS": "Gracias por participar",
+"EVALUATEMORE": "Evaluar Otra Variedad",
+"SEARCHVALUE": "Buscar"
 }

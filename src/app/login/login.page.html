@@ -2,7 +2,7 @@
     <ion-row class="logo-row">
       <ion-col></ion-col>
       <ion-col width-67>
-        <img src="/assets/300x200.png"/><!--http://placehold.it/300x200-->
+        <img src="/assets/images/Logo_Icon.png"/><!--http://placehold.it/300x200-->
       </ion-col>
       <ion-col></ion-col>
     </ion-row>
@@ -13,18 +13,18 @@
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div padding>
             <ion-item>
-              <ion-input [(ngModel)]="Login.Name" id="inputName" name="name" type="text" placeholder="{{Name}}" ngModel required></ion-input>
+              <ion-input [(ngModel)]="Login.Name" id="inputName" name="name" type="text" placeholder="{{ 'NAME' | translate }}" ngModel required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="Login.Email" id="inputEmail" name="email" type="text" placeholder="{{Email}}" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" ngModel required></ion-input>
+              <ion-input [(ngModel)]="Login.Email" id="inputEmail" name="email" type="text" placeholder="{{ 'EMAIL' | translate }}" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" ngModel required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="Login.Company" id="inputCompany" name="text" type="text" placeholder="{{Company}}"></ion-input>
+              <ion-input [(ngModel)]="Login.Company" id="inputCompany" name="text" type="text" placeholder="{{ 'COMPANY' | translate }}"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-select style="padding-left: 0px;" [(ngModel)]="language" [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="{{Select}}" (ionChange)="changeLanguage($event)" ngDefaultControl name="fieldName">
-                <ion-select-option value="es">{{Languages.sp}}</ion-select-option>
-                <ion-select-option value="en">{{Languages.en}}</ion-select-option>
+              <ion-select style="padding-left: 0px;" [(ngModel)]="language" [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="{{ 'SELECT' | translate }}" (ionChange)="changeLanguage($event)" ngDefaultControl name="fieldName">
+                <ion-select-option value="es">{{ 'LANGUAGES.SP' | translate }}</ion-select-option>
+                <ion-select-option value="en">{{ 'LANGUAGES.EN' | translate }}</ion-select-option>
               </ion-select>
             </ion-item>
             <!-- <ion-item>
@@ -32,7 +32,7 @@
             </ion-item> -->
           </div>
           <div padding>
-            <ion-button size="large" type="button" [disabled]="form.invalid" (click)="loginUser()" expand="block" color="tertiary">{{Enter}}</ion-button>
+            <ion-button size="large" type="button" [disabled]="form.invalid" (click)="loginUser()" expand="block" color="tertiary">{{ 'ENTER' | translate }}</ion-button>
           </div>
           <!-- <div>
             <ion-row color="primary" justify-content-center>

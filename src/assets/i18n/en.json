@@ -11,5 +11,19 @@
 "USERTERMS_TEXT": "By touching the arrow below, you agree to the Terms of Use and Privacy Policies",
 "USERTERMS_MORE": "For more information, see",
 "USERTERMS_LINK": "Terms of Use and Privacy Policies",
-"SEND": "Send Answers"
+"SEND": "Send Answers",
+"SCANNEDCODE": "Scanned Code",
+"FAVORITE": "Favorites",
+"FAVORITEADDED": "Added to favorites",
+"VARIETYDETAIL": "Variety Detail",
+"ERROR": "ERROR",
+"INFONOTFOUND": "Info Not Found",
+"CODENOTFOUND": "Code Not Found",
+"SELECTATLEATSONE": "Select at least one option",
+"USERCLEANED": "User Cleaned",
+"ANSWERSEND": "Answer Send",
+"SCANLABEL": "Scan label",
+"THANKS": "Thanks For Participate",
+"EVALUATEMORE": "Evaluate Another Variety",
+"SEARCHVALUE": "Search"
 }

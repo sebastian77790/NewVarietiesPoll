@@ -9,10 +9,17 @@ import { Storage } from "@ionic/storage";
 export class CodedetailPage implements OnInit {
   codeinfo: {};
 
-  constructor(private storage: Storage) { }
+  constructor(
+    private storage: Storage
+    ) { }
 
   async ngOnInit() {
     this.codeinfo = await this.storage.get("labelinfo");
+    this.codeinfo[0].IMG = "";
+  }
+
+  updateImage(){
+    this.codeinfo[0].IMG = "assets/images/300x200.png";
   }
 
 }

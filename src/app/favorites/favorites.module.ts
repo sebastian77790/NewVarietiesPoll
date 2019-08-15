@@ -5,9 +5,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SearchModule } from "../components/search/search.module";
+import { SearchComponent } from "../components/search/search.component";
 
 import { FavoritesPage } from './favorites.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   {
@@ -22,8 +23,9 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    SearchModule
+    TranslateModule
   ],
-  declarations: [FavoritesPage]
+  declarations: [FavoritesPage, SearchComponent],
+  entryComponents: [SearchComponent]
 })
 export class FavoritesPageModule {}

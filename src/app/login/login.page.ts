@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { login } from "src/app/extensions/models.model";
-import { AuthenticationService } from '../services/Authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 import { Globalization } from '@ionic-native/globalization/ngx';
 import { TranslateService } from '@ngx-translate/core';
@@ -20,7 +20,7 @@ import { ServicesService } from "../services/services.service";
 })
 export class LoginPage {
   Login: login = new login();
-  public Languages:any;
+  //public Languages:any;
   public language: string;
   customActionSheetOptions: any = {
     // header: 'Idioma',
@@ -28,15 +28,12 @@ export class LoginPage {
   };
   dataReturned:any;
 
-  public Enter: string;
   public Title: string;
-  public Name: string;
-  public Email: string;
-  public Company: string;
   public SecurityCode: string;
-  public Select: string;
   public UserTerms: string;
   private session:string;
+  public Error: string;
+  public UserCleaned: string;
 
   constructor(
     private authService: AuthenticationService,
@@ -48,7 +45,7 @@ export class LoginPage {
     private services: ServicesService,
     private loadingService: LoaderService
      ) {
-       this.Languages = {sp:'', en:'', opt:''};
+       //this.Languages = {sp:'', en:'', opt:''};
      }
     
 
@@ -65,7 +62,6 @@ export class LoginPage {
     }
 
     async cleanUser(){
-      this.loadingService.presentLoading();
       this.Login.Name = "";
       this.Login.Email = "";
       this.Login.UserId = "";
@@ -75,40 +71,24 @@ export class LoginPage {
       //this.storage.remove("scannedCodes");
       // this.storage.remove("USER_INFO");
       // this.storage.remove("labelinfo");
-      this.loadingService.dismissLoading();
-      this.toaster.presentToast("Usuario Limpiado");
+      this.toaster.presentToast(this.UserCleaned);
     }
 
-
     _initialiseTranslation(): void {
-      this._translate.get('ENTER').subscribe((res: string) => {
-        this.Enter = res;
-      });
       this._translate.get('TITLE').subscribe((res: string) => {
         this.Title = res;
-      });
-      this._translate.get('NAME').subscribe((res: string) => {
-        this.Name = res;
-      });
-      this._translate.get('EMAIL').subscribe((res: string) => {
-        this.Email = res;
-      });
-      this._translate.get('COMPANY').subscribe((res: string) => {
-        this.Company = res;
       });
       this._translate.get('SECURITYCODE').subscribe((res: string) => {
         this.SecurityCode = res;
       });
-      this._translate.get('SELECT').subscribe((res: string) => {
-        this.Select = res;
-      });
-      this._translate.get('LANGUAGES').subscribe((res: any) => {
-        this.Languages.sp = res.SP;
-        this.Languages.en = res.EN;
-        // this.Languages.opt = res.OPT;
-      });
       this._translate.get('USERTERMS').subscribe((res: any) => {
         this.UserTerms = res;
+      });
+      this._translate.get('ERROR').subscribe((res: any) => {
+        this.Error = res;
+      });
+      this._translate.get('USERCLEANED').subscribe((res: any) => {
+        this.UserCleaned = res;
       });
     }
   
@@ -148,19 +128,20 @@ export class LoginPage {
   async loginUser(){
     if(this.Login.Terms){
       this.Login.Language = this.language.toUpperCase();
+      this.loadingService.presentLoading();
+      const Session = await this.services.PostNewUser(this.Login).toPromise().catch(() => {
+        return null;
+      });
+  
+      if (!Session) this.toaster.presentErrorToast(this.Error);
+      else {
+        this.session = Session["sessionId"];
+        this.Login.UserId = this.session;
+        this.loadingService.dismissLoading();
+        this.authService.login(this.Login);
+      };
+
       this.loadingService.dismissLoading();
-      const Session = await this.services.PostNewUser(this.Login).subscribe(
-        (response: any) => {
-          this.session = response["sessionId"];
-          this.Login.UserId = this.session;
-          this.loadingService.dismissLoading();
-          this.authService.login(this.Login);
-        },
-        err => {
-          this.loadingService.dismissLoading();
-          this.toaster.presentErrorToast("Ocurrió un Error");
-        }
-      );
     }else{
       this.openModal();
     }    

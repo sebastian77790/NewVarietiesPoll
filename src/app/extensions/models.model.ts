@@ -2,6 +2,7 @@ export interface CodeInfo {
   INVCodeId: string;
   ComercialName: string;
   Favorite: boolean;
+  IMG: string;
 }
 
 export class answers {

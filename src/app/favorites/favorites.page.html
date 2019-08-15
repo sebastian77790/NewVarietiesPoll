@@ -3,15 +3,15 @@
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/"></ion-back-button>
       </ion-buttons>
-      <ion-title>Favorites</ion-title>
+      <ion-title>{{'FAVORITE' | translate}}</ion-title>
     </ion-toolbar>
   </ion-header>
   
-<ion-content padding>
-  <!-- <app-search (searchCompleted)="hydrateCodes($event)" 
+<ion-content>
+  <app-search (searchCompleted)="hydrateCodes($event)" 
               (searchStarted)="handleSearch()"
-              [items]="codes" 
-              [filteredProperty]="'INVCodeId'"></app-search> -->
+              [items]="copyOfCodes" 
+              [filteredProperty]="'INVCodeId'"></app-search>
   <ion-spinner text-center *ngIf="isLoading"></ion-spinner>
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
@@ -19,10 +19,10 @@
   </ion-refresher>
   <ion-list *ngIf="codes.length > 0">
     <ion-card *ngFor="let code of codes">
-      <!-- <img [src]="cardDetailed.img" (error)="updateImage($event)"/> -->
+      <img [src]="code.IMG" (error)="updateImage($event)"/>
       <ion-card-header text-wrap>
         <ion-card-subtitle>{{ code.ComercialName }}</ion-card-subtitle>
-        <ion-card-title>{{ code.INVCodeId }} <ion-icon (click)="favoriteCode(code)" [ngClass]="code.Favorite ? 'favorite' : 'normal' " name="rose" class="like-icon"></ion-icon> </ion-card-title>
+        <ion-card-title>{{ code.INVCodeId }} <ion-icon (click)="favoriteCode(code)" [ngClass]="code.Favorite ? 'favorite' : 'normal' " [name]="code.Favorite ? 'heart' : 'heart-empty'" class="like-icon"></ion-icon> </ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <div [innerHTML]="code.text"></div>

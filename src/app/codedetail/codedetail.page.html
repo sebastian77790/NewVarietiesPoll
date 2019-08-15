@@ -3,13 +3,13 @@
       <ion-buttons slot="start">
           <ion-back-button defaultHref="/"></ion-back-button>
         </ion-buttons>
-    <ion-title>codedetail</ion-title>
+    <ion-title>{{ 'VARIETYDETAIL' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-card>
-        <!-- <img [src]="cardDetailed.img" (error)="updateImage($event)"/> -->
+    <ion-card *ngIf="codeinfo">
+        <img [src]="codeinfo[0].IMG" (error)="updateImage($event)"/>
         <ion-card-header text-wrap>
           <ion-card-subtitle>{{ codeinfo[0].ComercialName }}</ion-card-subtitle>
           <ion-card-title>{{ codeinfo[0].INVCodeId }} </ion-card-title>

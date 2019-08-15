@@ -3,7 +3,7 @@ import { LoaderService } from "../../services/loader.services";
 import { ToastService } from "../../services/toast.service";
 
 import { GoogleCharts } from "google-charts";
-import { AuthenticationService } from "../../services/Authentication.service";
+import { AuthenticationService } from "../../services/authentication.service";
 import { ServicesService } from "src/app/services/services.service";
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../services/Authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
 
-import { Storage  } from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 import { NavController } from "@ionic/angular";
 
 

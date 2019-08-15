@@ -2,25 +2,34 @@ import { Injectable, OnInit, Optional } from "@angular/core";
 import { Storage } from "@ionic/storage";
 import { Platform, NavController } from "@ionic/angular";
 import { BehaviorSubject } from "rxjs";
-import { ToastService } from "../services/toast.service";
+import { ToastService } from "./toast.service";
 import { Guid } from "../extensions/guid.cl";
 import { login } from "../extensions/models.model";
+
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthenticationService implements OnInit {
   async ngOnInit(): Promise<void> {
+    this._translate.get('SCANLABEL').subscribe((res: any) => {
+      this.ScanLabel = res;
+    });
     await this.platform.ready();
     this.ifLoggedIn();
   }
   authState = new BehaviorSubject(false);
 
+  ScanLabel: string;
+
   constructor(
     private router: NavController,
-    @Optional()  private storage: Storage,
+    //@Optional()  private storage: Storage,
+    private storage: Storage,
     private platform: Platform,
-    private toaster: ToastService
+    private toaster: ToastService,
+    private _translate: TranslateService
   ) {}
 
   async ifLoggedIn() {
@@ -62,7 +71,7 @@ export class AuthenticationService implements OnInit {
         this.authState.next(true);
       }
 
-      this.toaster.presentToast("Escanea la etiqueta");
+      this.toaster.presentToast(this.ScanLabel);
     }
 
   }

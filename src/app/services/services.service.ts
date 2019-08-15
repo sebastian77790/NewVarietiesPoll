@@ -39,7 +39,7 @@ export class ServicesService {
 
   public getPoll(language:string): Observable<any> {
      const httpOptions = {
-       headers: new HttpHeaders({ "x-functions-key": "Yq2EP5wrdWXv4XyNHogdvGDPC39zu0jenGH0R2bqaocpA5o/PLaVUQ==", 'Access-Control-Allow-Origin': 'api.globostudio.com.co'})    
+       headers: new HttpHeaders({ "x-functions-key": "Yq2EP5wrdWXv4XyNHogdvGDPC39zu0jenGH0R2bqaocpA5o/PLaVUQ==" })    
      };
 
     //  { "x-functions-key": "Yq2EP5wrdWXv4XyNHogdvGDPC39zu0jenGH0R2bqaocpA5o/PLaVUQ==",
@@ -69,7 +69,7 @@ export class ServicesService {
     const httpOptions = {
       headers: new HttpHeaders({ "x-functions-key": "Yq2EP5wrdWXv4XyNHogdvGDPC39zu0jenGH0R2bqaocpA5o/PLaVUQ==", "Content-Type": "application/json" })    
     };
-
+    
     return this.http.post<any>("https://wfinvpollservices.azurewebsites.net/api/SaveQuestionAnswer", answer, httpOptions);
   }
 

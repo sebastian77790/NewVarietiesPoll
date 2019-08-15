@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { Router } from '@angular/router';
-import { AuthenticationService } from './services/Authentication.service';
+import { AuthenticationService } from './services/authentication.service';
 
 import { timer } from 'rxjs';
 
@@ -30,16 +30,16 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.platform.backButton.subscribeWithPriority(9999, async () => {
         document.addEventListener('backbutton', function (event) {
-          event.stopImmediatePropagation();
-          event.preventDefault();
-          event.stopPropagation();
+          // event.stopImmediatePropagation();
+          // event.preventDefault();
+          // event.stopPropagation();
           console.log('NOPE');
         }, false);
       });
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      timer(3000).subscribe(() => this.showSplash = false);
+      timer(1700).subscribe(() => this.showSplash = false);
 
       this.authenticationService.authState.subscribe(state => {
         if (state) {

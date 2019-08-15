@@ -28,14 +28,13 @@ export class SlidesComponent implements OnInit {
   optionsSelected = [];
 
   public Send: string;
+  public Error: string;
+  public SelectAtLeastOne: string;
+  public AnswerSend: string;
 
   @ViewChild("slidesPoll") slides: IonSlides;
 
   // Optional parameters to pass to the swiper instance. See http://idangero.us/swiper/api/ for valid options.
-  slideOpts = {
-    initialSlide: 0,
-    speed: 400,
-    allowTouchMove: false
     // onlyExternal: true,    
     // effect: "flip",
     // allowSlideNext: true,
@@ -43,6 +42,10 @@ export class SlidesComponent implements OnInit {
     // loop: false,
     // direction: 'horizontal',
     // pager: true,
+  slideOpts = {
+    initialSlide: 0,
+    speed: 400,
+    allowTouchMove: false
   };
 
   constructor(
@@ -58,6 +61,20 @@ export class SlidesComponent implements OnInit {
 
   async ngOnInit() {
     this.loadingService.presentLoading();
+    
+    this._translate.get('SEND').subscribe((res: any) => {
+      this.Send = res;
+    });
+    this._translate.get('ERROR').subscribe((res: any) => {
+      this.Error = res;
+    });
+    this._translate.get('SELECTATLEATSONE').subscribe((res: any) => {
+      this.SelectAtLeastOne = res;
+    });
+    this._translate.get('ANSWERSEND').subscribe((res: any) => {
+      this.AnswerSend = res;
+    });
+
     this.language = this._translate.getBrowserLang();
 
     const response = await this.services.getPoll(this.language).toPromise().catch(() => {
@@ -68,8 +85,7 @@ export class SlidesComponent implements OnInit {
       this.questions = response;
       this.slides.update();
     }
-    else
-      this.toaster.presentErrorToast("Ocurrió un Error");
+    else this.toaster.presentErrorToast(this.Error);
 
     this.loadingService.dismissLoading();
     
@@ -87,17 +103,7 @@ export class SlidesComponent implements OnInit {
 
   }
 
-  ionViewWillEnter() {
-    this._translate.get('SEND').subscribe((res: any) => {
-      this.Send = res;
-    });
-  }
-
   async slideChanged() {
-    // await this.slides.lockSwipes(true);
-    // const currentIndex = this.slides.getActiveIndex();
-    // this.slides.slideTo(2, 200);
-    
     this.loadingService.presentLoading();
     const index = await this.slides.getActiveIndex();
     let answer = {};
@@ -114,16 +120,16 @@ export class SlidesComponent implements OnInit {
         }
       });
 
-      const response = await this.services.SaveAnswer(answer).toPromise().catch(() => {
-        return null;
+      const Poll = await this.services.SaveAnswer(answer).toPromise().catch(() => {
+        return "";
       });
   
-      if (!response) this.toaster.presentErrorToast("Ocurrió un Error");
+      if (Poll == "") this.toaster.presentErrorToast(this.Error);
         
-      this.loadingService.dismissLoading();
       this.slides.slideNext();
-    } else this.toaster.presentErrorToast("Selecciona al menos una opción o llena algun dato");
+    } else this.toaster.presentErrorToast(this.SelectAtLeastOne);
 
+      this.loadingService.dismissLoading();
   }
 
   private sendEmail() {
@@ -165,33 +171,20 @@ export class SlidesComponent implements OnInit {
     this.answers.Email = Login.user_email;
     this.answers.Name = Login.user_name;
 
-    // var optionsSelected = [];
-    // this.questions.forEach(function(element){
-    //   var options = element.options.filter((item) => item.isChecked).map((item) => item.id);
-    //   if(options)optionsSelected.push(options);      
-    // })
     this.answers.PollResults = PollResults;
 
     this.services.setNewAnswer(this.answers).subscribe(
       (response: any) => {
         this.response = response;
         this.loadingService.dismissLoading();
-        this.toaster.presentToast("Respuesta Enviada");
+        this.toaster.presentToast(this.AnswerSend);
         //this.router.navigateForward(["charts"]);
 
         this.alert.presentAlertConfirm();
-
-        //this.sendEmail();
-
-        // if (option == 1) {
-        //   this.router.navigateBack(["home"]);
-        // } else {
-        //   this.router.navigateBack(["login"]);
-        // }
       },
       err => {
         this.loadingService.dismissLoading();
-        this.toaster.presentErrorToast("Ocurrió un Error");
+        this.toaster.presentErrorToast(this.Error);
       }
     );
   }

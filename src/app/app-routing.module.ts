@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './services/Auth-Guard.service';
+import { AuthGuard } from './services/auth-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'charts', loadChildren: './charts/charts/charts.module#ChartsPageModule', canActivate: [AuthGuard] },
   { path: 'arflowersinfo', loadChildren: './arflowersinfo/arflowersinfo.module#ArflowersinfoPageModule', canActivate: [AuthGuard] },
   { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
-  { path: 'favorites', loadChildren: './favorites/favorites.module#FavoritesPageModule', canActivate: [AuthGuard] },  { path: 'codedetail', loadChildren: './codedetail/codedetail.module#CodedetailPageModule' },
+  { path: 'favorites', loadChildren: './favorites/favorites.module#FavoritesPageModule', canActivate: [AuthGuard] },
+  { path: 'codedetail', loadChildren: './codedetail/codedetail.module#CodedetailPageModule' },
 
 ]; 
 
