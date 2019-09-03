@@ -11,17 +11,9 @@ import { TranslateService } from '@ngx-translate/core';
 export class AlertService {
   Thanks: string;
   EvaluateMore: string;
+  Options: any;
 
-  constructor(public alertController: AlertController, private router: NavController, private _translate: TranslateService) {}
-
-  ionViewWillEnter() {
-    this._translate.get('THANKS').subscribe((res: any) => {
-      this.Thanks = res;
-    });
-    this._translate.get('EVALUATEMORE').subscribe((res: any) => {
-      this.EvaluateMore = res;
-    });
-  }
+  constructor(public alertController: AlertController, private router: NavController, private _translate: TranslateService) { }
 
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -46,12 +38,22 @@ export class AlertService {
   }
 
   async presentAlertConfirm() {
+    this._translate.get('THANKS').subscribe((res: any) => {
+      this.Thanks = res;
+    });
+    this._translate.get('EVALUATEMORE').subscribe((res: any) => {
+      this.EvaluateMore = res;
+    });
+    this._translate.get('OPTIONS').subscribe((res: any) => {
+      this.Options = res;
+    });
+    
     const alert = await this.alertController.create({
       header: this.Thanks,
       message: `<strong>${this.EvaluateMore}?</strong>`,
       buttons: [
         {
-          text: 'Cancel',
+          text: this.Options.NO,
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
@@ -59,7 +61,7 @@ export class AlertService {
             console.log('Confirm Cancel: blah');
           }
         }, {
-          text: 'Okay',
+          text: this.Options.YES,
           handler: () => {
             this.router.navigateBack(["home"]);
             console.log('Confirm Okay');

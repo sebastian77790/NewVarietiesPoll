@@ -19,10 +19,12 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { Globalization } from '@ionic-native/globalization/ngx';
 
 import { ModalPageModule } from './modal/modal.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
-  }
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,7 +42,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     StatusBar,
@@ -57,4 +60,4 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

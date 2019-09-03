@@ -30,16 +30,13 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.platform.backButton.subscribeWithPriority(9999, async () => {
         document.addEventListener('backbutton', function (event) {
-          // event.stopImmediatePropagation();
-          // event.preventDefault();
-          // event.stopPropagation();
-          console.log('NOPE');
+          console.log('Cant go back');
         }, false);
       });
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      timer(1700).subscribe(() => this.showSplash = false);
+      timer(2000).subscribe(() => this.showSplash = false);
 
       this.authenticationService.authState.subscribe(state => {
         if (state) {

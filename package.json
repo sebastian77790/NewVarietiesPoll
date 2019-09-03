@@ -1,6 +1,6 @@
 {
   "name": "NewVarietiesPoll",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
@@ -19,7 +19,9 @@
     "@angular/http": "^7.2.2",
     "@angular/platform-browser": "^7.2.2",
     "@angular/platform-browser-dynamic": "^7.2.2",
+    "@angular/pwa": "^0.12.4",
     "@angular/router": "^7.2.2",
+    "@angular/service-worker": "^7.2.2",
     "@ionic-native/barcode-scanner": "^5.6.1",
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/email-composer": "^5.9.0",

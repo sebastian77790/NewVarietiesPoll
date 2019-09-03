@@ -1,26 +1,24 @@
 <ion-header>
   <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-          <ion-back-button defaultHref="/"></ion-back-button>
-        </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
     <ion-title>{{ 'VARIETYDETAIL' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-card *ngIf="codeinfo">
-        <img [src]="codeinfo[0].IMG" (error)="updateImage($event)"/>
-        <ion-card-header text-wrap>
-          <ion-card-subtitle>{{ codeinfo[0].ComercialName }}</ion-card-subtitle>
-          <ion-card-title>{{ codeinfo[0].INVCodeId }} </ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <p><b>Color: </b>{{codeinfo[0].ColorName ? codeinfo[0].ColorName : codeinfo[0].INVColorName}}</p>
-          <p><b>Fecha: </b>{{codeinfo[0].PlantingDate}}</p>
-          <p><b>Producto: </b>{{codeinfo[0].Product}}</p>
-          <p><b>Consecutivo: </b>{{codeinfo[0].LabelConsecutive}}</p>
-          <p><b>Bloque: </b>{{codeinfo[0].FullCode}}</p>
-            <!-- HyBrider -->
-        </ion-card-content>
-      </ion-card>
+  <ion-card *ngIf="codeinfo">
+    <img [src]="codeinfo.photoUrl" (error)="updateImage($event)" />
+    <ion-card-header text-wrap>
+      <ion-card-title>{{ codeinfo.invCodeId }} </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><b>{{ 'SCANNEDCODE' | translate }}: </b>{{codeinfo.labelConsecutive}}</p>
+      <p><b>{{ 'COMMENTS' | translate }}: </b>{{codeinfo.comments}}</p>
+      <p><b>Color: </b>{{codeinfo.colorName}}</p>
+      <p><b>{{ 'TYPE' | translate }}: </b>{{codeinfo.type}}</p>
+      <p><b>{{ 'USE' | translate }}: </b>{{codeinfo.use}}</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -14,8 +14,13 @@ const routes: Routes = [
   { path: 'charts', loadChildren: './charts/charts/charts.module#ChartsPageModule', canActivate: [AuthGuard] },
   { path: 'arflowersinfo', loadChildren: './arflowersinfo/arflowersinfo.module#ArflowersinfoPageModule', canActivate: [AuthGuard] },
   { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
-  { path: 'favorites', loadChildren: './favorites/favorites.module#FavoritesPageModule', canActivate: [AuthGuard] },
+  { path: 'favorites', loadChildren: './favorites/favorites.module#FavoritesPageModule' },
   { path: 'codedetail', loadChildren: './codedetail/codedetail.module#CodedetailPageModule' },
+  {
+    path: "**",
+    redirectTo: "login",
+    pathMatch: "full"
+  }
 
 ]; 
 

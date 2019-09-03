@@ -30,7 +30,7 @@ export class AuthenticationService implements OnInit {
     private platform: Platform,
     private toaster: ToastService,
     private _translate: TranslateService
-  ) {}
+  ) { }
 
   async ifLoggedIn() {
     const response = await this.storage.get("USER_INFO");
@@ -39,20 +39,21 @@ export class AuthenticationService implements OnInit {
     }
   }
 
-  async login(Login:login) {
-    if(Login.CodeVerify != "WFGS2019") {
+  async login(Login: login) {
+    if (Login.CodeVerify != "WFGS2019") {
       this.toaster.presentErrorToast("Código no válido");
     } else {
       const userexist = await this.storage.get("USER_INFO");
       let user_response = {};
-      if(userexist){
+      if (userexist) {
         user_response = {
           user_id: Login.UserId,
           user_name: Login.Name,
           user_email: Login.Email,
           user_company: Login.Company,
           code: Login.CodeVerify,
-          user_terms: true
+          user_terms: true,
+          language: Login.Language
         };
       } else {
         user_response = {
@@ -61,12 +62,13 @@ export class AuthenticationService implements OnInit {
           user_email: Login.Email,
           user_company: Login.Company,
           code: Login.CodeVerify,
-          user_terms: true
+          user_terms: true,
+          language: Login.Language
         };
       }
-        
+
       const response = await this.storage.set("USER_INFO", user_response);
-      if (response) {   
+      if (response) {
         this.router.navigateRoot(["home"]);
         this.authState.next(true);
       }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from "@ionic/storage";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-codedetail',
@@ -7,19 +8,19 @@ import { Storage } from "@ionic/storage";
   styleUrls: ['./codedetail.page.scss'],
 })
 export class CodedetailPage implements OnInit {
-  codeinfo: {};
+  codeinfo: { photoUrl: "assets/images/image_default.png" };
 
   constructor(
-    private storage: Storage
-    ) { }
+    private storage: Storage,
+    private _translate: TranslateService
+  ) { }
 
   async ngOnInit() {
     this.codeinfo = await this.storage.get("labelinfo");
-    this.codeinfo[0].IMG = "";
   }
 
-  updateImage(){
-    this.codeinfo[0].IMG = "assets/images/300x200.png";
+  updateImage() {
+    this.codeinfo.photoUrl = "assets/images/image_default.png";
   }
 
 }

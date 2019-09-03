@@ -1,8 +1,9 @@
 export interface CodeInfo {
-  INVCodeId: string;
+  invCodeId: string;
   ComercialName: string;
   Favorite: boolean;
-  IMG: string;
+  photoUrl: string;
+  labelConsecutive: string;
 }
 
 export class answers {

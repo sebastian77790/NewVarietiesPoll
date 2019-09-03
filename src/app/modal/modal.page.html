@@ -1,31 +1,26 @@
 <ion-header>
   <ion-toolbar text-center color="primary">
     <ion-title>{{modalTitle}}</ion-title>
-    <!-- <ion-buttons slot="end">
-        <ion-icon size="large" name="close-circle-outline" (click)="closeModal()"></ion-icon>
-    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <!-- <ion-col text-center>
-        ID : {{modelId}}
-      </ion-col> -->
       <span class="terms">
         {{ 'USERTERMS_TEXT' | translate }}
       </span>
 
       <span class="terms-Info">{{ 'USERTERMS_MORE' | translate }}</span>
 
-      <a class="terms-Link" href="http://www.globostudio.com.co/PrivacyPolicy/PrivacyPolicyQualityApp.html">{{ 'USERTERMS_LINK' | translate }}</a>
-      
-    </ion-row>  
+      <a class="terms-Link"
+        href="http://www.globostudio.com.co/PrivacyPolicy/PrivacyPolicyQualityApp.html">{{ 'USERTERMS_LINK' | translate }}</a>
+
+    </ion-row>
   </ion-grid>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button color="tertiary" (click)="closeModal()">
-        <ion-icon name="arrow-forward"></ion-icon>
-      </ion-fab-button>
+    <ion-fab-button color="tertiary" (click)="closeModal()">
+      <ion-icon name="arrow-forward"></ion-icon>
+    </ion-fab-button>
   </ion-fab>
 </ion-content>

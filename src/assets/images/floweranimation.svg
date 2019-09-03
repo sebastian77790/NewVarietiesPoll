@@ -2,28 +2,28 @@
      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
     <path id="r1">
-      <animate id="p1" attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0" dur="1s" repeatCount="indefinite"/>
-      <animate attributeName="stroke-width" values="0;4;4;4;0" dur="1s" repeatCount="indefinite" begin="p1.begin"/>
+      <animate id="p1" attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="0;4;4;4;0" dur="2s" repeatCount="indefinite" begin="p1.begin"/>
     </path>
     <path id="r2">
-      <animate attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0" dur="1s" repeatCount="indefinite" begin="p1.begin+0.5s"/>
-      <animate attributeName="stroke-width" values="0;4;4;4;0" dur="1s" repeatCount="indefinite" begin="p1.begin+0.5s"/>
+      <animate attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0" dur="2s" repeatCount="indefinite" begin="p1.begin+0.5s"/>
+      <animate attributeName="stroke-width" values="0;4;4;4;0" dur="2s" repeatCount="indefinite" begin="p1.begin+0.5s"/>
     </path>
     <path id="r3">
-      <animate attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0" dur="1s" repeatCount="indefinite" begin="p1.begin+1s"/>
-      <animate attributeName="stroke-width" values="0;4;4;4;0" dur="1s" repeatCount="indefinite" begin="p1.begin+1s"/>
+      <animate attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0" dur="2s" repeatCount="indefinite" begin="p1.begin+1s"/>
+      <animate attributeName="stroke-width" values="0;4;4;4;0" dur="2s" repeatCount="indefinite" begin="p1.begin+1s"/>
     </path>
     <path id="r4">
-      <animate id="p1" attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0" dur="1s" repeatCount="indefinite" begin="p1.begin+1.5s"/>
-      <animate attributeName="stroke-width" values="0;4;4;4;0" dur="1s" repeatCount="indefinite" begin="p1.begin+1.5s"/>
+      <animate id="p1" attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0" dur="2s" repeatCount="indefinite" begin="p1.begin+1.5s"/>
+      <animate attributeName="stroke-width" values="0;4;4;4;0" dur="2s" repeatCount="indefinite" begin="p1.begin+1.5s"/>
     </path>
     <path id="r5">
-      <animate attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0" dur="1s" repeatCount="indefinite" begin="p1.begin+2s"/>
-      <animate attributeName="stroke-width" values="0;4;4;4;0" dur="1s" repeatCount="indefinite" begin="p1.begin+2s"/>
+      <animate attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0" dur="2s" repeatCount="indefinite" begin="p1.begin+2s"/>
+      <animate attributeName="stroke-width" values="0;4;4;4;0" dur="2s" repeatCount="indefinite" begin="p1.begin+2s"/>
     </path>
     <path id="r6">
-      <animate attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0" dur="1s" repeatCount="indefinite" begin="p1.begin+2.5s"/>
-      <animate attributeName="stroke-width" values="0;4;4;4;0" dur="1s" repeatCount="indefinite" begin="p1.begin+2.5s"/>
+      <animate attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0" dur="2s" repeatCount="indefinite" begin="p1.begin+2.5s"/>
+      <animate attributeName="stroke-width" values="0;4;4;4;0" dur="2s" repeatCount="indefinite" begin="p1.begin+2.5s"/>
     </path>
   </defs>
   <use xlink:href="#r1"/>

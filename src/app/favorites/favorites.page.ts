@@ -6,6 +6,7 @@ import { Subscription } from "rxjs";
 import { CodeInfo } from '../extensions/models.model';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastService } from "../services/toast.service";
+import { ServicesService } from "../services/services.service";
 
 @Component({
   selector: "app-favorites",
@@ -28,7 +29,8 @@ export class FavoritesPage {
     private storage: Storage,
     private favoriteCardStore: FavoriteCodeStore,
     private _translate: TranslateService,
-    private toaster: ToastService
+    private toaster: ToastService,
+    private services: ServicesService
   ) {
 
     this.favoriteCodeSub = this.favoriteCardStore.favoriteCodes.subscribe((favoriteCodes: any) => {
@@ -40,22 +42,22 @@ export class FavoritesPage {
     await this.loadingService.presentLoading();
     this.codes = await this.storage.get("scannedCodes");
     this.codes = this.codes.map((code: CodeInfo) => {
-      code.Favorite = this.isCodeFavorite(code.INVCodeId);
-      if(!code.IMG) code.IMG = "";
+      code.Favorite = this.isCodeFavorite(code.invCodeId);
+      if (!code.photoUrl) code.photoUrl = "";
       return code;
     });
     this.copyOfCodes = Array.from(this.codes);
     this.loadingService.dismissLoading();
   }
 
-  private isCodeFavorite(codeId: string):boolean{
+  private isCodeFavorite(codeId: string): boolean {
     const code = this.favoriteCodes[codeId];
 
     return code ? true : false;
   }
 
-  ionViewDidLeave(){
-    if (this.favoriteCodeSub && !this.favoriteCodeSub.closed){
+  ionViewDidLeave() {
+    if (this.favoriteCodeSub && !this.favoriteCodeSub.closed) {
       this.favoriteCodeSub.unsubscribe();
     }
   }
@@ -66,28 +68,31 @@ export class FavoritesPage {
       this.FavoriteAdded = res;
     });
   }
- 
-  doRefresh(event){
+
+  doRefresh(event) {
     this.getCodes();
     event.target.complete();
   }
 
-  hydrateCodes(codes: CodeInfo[]){
+  hydrateCodes(codes: CodeInfo[]) {
     this.codes = codes;
     this.isLoading = false;
   }
 
-  handleSearch(){
+  handleSearch() {
     this.isLoading = true;
   }
 
-  favoriteCode(code: CodeInfo){
+  async favoriteCode(code: CodeInfo) {
+    await this.loadingService.presentLoading();
     this.favoriteCardStore.toggleCode(code);
+
+    this.loadingService.dismissLoading();
     this.toaster.presentToast(this.FavoriteAdded);
   }
 
-  updateImage(e){
-    e.currentTarget.src = "assets/images/300x200.png";
+  updateImage(e) {
+    e.currentTarget.src = "assets/images/image_default.png";
   }
 
 }

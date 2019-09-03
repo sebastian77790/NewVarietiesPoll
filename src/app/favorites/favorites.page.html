@@ -1,17 +1,15 @@
 <ion-header>
-    <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/"></ion-back-button>
-      </ion-buttons>
-      <ion-title>{{'FAVORITE' | translate}}</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'FAVORITE' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  <app-search (searchCompleted)="hydrateCodes($event)" 
-              (searchStarted)="handleSearch()"
-              [items]="copyOfCodes" 
-              [filteredProperty]="'INVCodeId'"></app-search>
+  <app-search (searchCompleted)="hydrateCodes($event)" (searchStarted)="handleSearch()" [items]="copyOfCodes"
+    [filteredProperty]="'invCodeId'"></app-search>
   <ion-spinner text-center *ngIf="isLoading"></ion-spinner>
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
@@ -19,21 +17,23 @@
   </ion-refresher>
   <ion-list *ngIf="codes.length > 0">
     <ion-card *ngFor="let code of codes">
-      <img [src]="code.IMG" (error)="updateImage($event)"/>
+      <img [src]="code.photoUrl" (error)="updateImage($event)" />
       <ion-card-header text-wrap>
         <ion-card-subtitle>{{ code.ComercialName }}</ion-card-subtitle>
-        <ion-card-title>{{ code.INVCodeId }} <ion-icon (click)="favoriteCode(code)" [ngClass]="code.Favorite ? 'favorite' : 'normal' " [name]="code.Favorite ? 'heart' : 'heart-empty'" class="like-icon"></ion-icon> </ion-card-title>
+        <ion-card-title>{{ code.invCodeId }} <ion-icon (click)="favoriteCode(code)"
+            [ngClass]="code.Favorite ? 'favorite' : 'normal' " [name]="code.Favorite ? 'heart' : 'heart-empty'"
+            class="like-icon"></ion-icon>
+        </ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <div [innerHTML]="code.text"></div>
-        <p><b>Color: </b>{{code.ColorName ? code.ColorName : code.INVColorName}}</p>
-        <p><b>Fecha: </b>{{code.PlantingDate}}</p>
-        <p><b>Producto: </b>{{code.Product}}</p>
-        <p><b>Consecutivo: </b>{{code.LabelConsecutive}}</p>
-        <p><b>Bloque: </b>{{code.FullCode}}</p>
-          <!-- HyBrider -->
+        <p><b>{{ 'SCANNEDCODE' | translate }}: </b>{{code.labelConsecutive}}</p>
+        <p><b>{{ 'COMMENTS' | translate }}: </b>{{code.comments}}</p>
+        <p><b>Color: </b>{{code.colorName}}</p>
+        <p><b>{{ 'TYPE' | translate }}: </b>{{code.type}}</p>
+        <p><b>{{ 'USE' | translate }}: </b>{{code.use}}</p>
+
       </ion-card-content>
     </ion-card>
   </ion-list>
 </ion-content>
-

@@ -6,7 +6,7 @@ export const environment = {
   production: false
 };
 
-export const URLWebflowers: string = "https://alphainv.azurewebsites.net/WinWebServices/";
+export const URLWebflowers: string = "https://webflowersicon.azurewebsites.net/WinWebServices/";
 
 /*
  * For easier debugging in development mode, you can import the following file

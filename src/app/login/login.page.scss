@@ -1,5 +1,5 @@
 ion-item{
-    --background: #000F52;
+    --background: transparent;
     --color: #fff;
 }
 
@@ -19,4 +19,17 @@ ion-select{
 .logo-row {
     padding-top: 50px;
     padding-bottom: 20px;
+}
+
+ion-content.background{
+    background-color:#000F52;
+    --background: url(../../assets/images/login_2.png) 0 0/100% 100% no-repeat;
+}
+
+.centered-company{
+    color:white;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100%;
 }

@@ -1,30 +1,18 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title></ion-title>
-    <!-- <ion-buttons slot="start">
-      <ion-back-button routerDirection="backward"></ion-back-button>
-    </ion-buttons> -->
-    <!-- <div class="ion-text-center">
-      <p>{{info?.ComercialName ? info?.ComercialName : info?.INVCodeId}}</p>
-    </div>     -->
-    <!-- <ion-buttons slot="end">
-      <ion-icon (click)="goToResults()" size="large" name="pie"></ion-icon>
-    </ion-buttons> -->
-    <!-- <ion-buttons slot="end">
-      <ion-icon (click)="goToAR()" size="large" name="glasses"></ion-icon>
-    </ion-buttons> -->
-    <!-- <ion-buttons slot="end">
-        <ion-icon (click)="logoutUser()" size="large" name="exit"></ion-icon>
-    </ion-buttons> -->
-    <ion-buttons slot="end">
-        <ion-icon (click)="goToFavorites()" size="large" name="heart" color="danger"></ion-icon>
+    <ion-buttons slot="start" padding>
+      <ion-icon (click)="goToFavorites()" size="large" name="paper" color="light"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="start" padding>
+      <ion-icon (click)="goToInfo()" size="large" name="rose" color="light"></ion-icon>
     </ion-buttons>
     <ion-buttons slot="end" padding>
-        <ion-icon (click)="goToInfo()" size="large" name="rose" color="light"></ion-icon>
+      <ion-icon (click)="likeCode()" size="large" name="heart" color="danger"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-    
+
 <ion-content>
-    <app-slides></app-slides>
+  <app-slides></app-slides>
 </ion-content>

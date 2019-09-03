@@ -26,22 +26,17 @@ export class SlidesComponent implements OnInit {
   language: string;
   questions: any;
   optionsSelected = [];
+  Comments: string;
 
   public Send: string;
   public Error: string;
   public SelectAtLeastOne: string;
   public AnswerSend: string;
+  public CheckedOption: string;
 
   @ViewChild("slidesPoll") slides: IonSlides;
 
   // Optional parameters to pass to the swiper instance. See http://idangero.us/swiper/api/ for valid options.
-    // onlyExternal: true,    
-    // effect: "flip",
-    // allowSlideNext: true,
-    // allowSlidePrev: true,
-    // loop: false,
-    // direction: 'horizontal',
-    // pager: true,
   slideOpts = {
     initialSlide: 0,
     speed: 400,
@@ -61,7 +56,7 @@ export class SlidesComponent implements OnInit {
 
   async ngOnInit() {
     this.loadingService.presentLoading();
-    
+
     this._translate.get('SEND').subscribe((res: any) => {
       this.Send = res;
     });
@@ -75,9 +70,10 @@ export class SlidesComponent implements OnInit {
       this.AnswerSend = res;
     });
 
-    this.language = this._translate.getBrowserLang();
+    //this.language = this._translate.getBrowserLang();
+    const user = await this.storage.get("USER_INFO");
 
-    const response = await this.services.getPoll(this.language).toPromise().catch(() => {
+    const response = await this.services.getPoll(user.language).toPromise().catch(() => {
       return null;
     });
 
@@ -88,48 +84,50 @@ export class SlidesComponent implements OnInit {
     else this.toaster.presentErrorToast(this.Error);
 
     this.loadingService.dismissLoading();
-    
-    // const Poll = await this.services.getPoll(this.language).subscribe(
-    //   (response: any) => {
-    //     console.log('subscribe')
-    //     this.questions = response;
-    //     this.loadingService.dismissLoading();
-    //   },
-    //   err => {
-    //     this.loadingService.dismissLoading();
-    //     this.toaster.presentErrorToast("Ocurrió un Error");
-    //   }
-    // );
 
   }
 
-  async slideChanged() {
+  async slideChanged(isLast) {
     this.loadingService.presentLoading();
+
     const index = await this.slides.getActiveIndex();
     let answer = {};
-    const user = await this.storage.get("USER_INFO")
+    const user = await this.storage.get("USER_INFO");
     const label = await this.storage.get("labelinfo");
-    let options = this.questions[index].options.filter((item) => item.isChecked).map((item) => item.id);
+    //validate question types
+    let options = [];
+    
+    if (this.questions[index].questionType == 0) {
+      options = this.questions[index].options.filter((item) => item.isChecked).map((item) => item.id);
+      if (options.length > 0) {
+        options.forEach(function (e) {
+          answer = {
+            "sessionId": user.user_id,
+            "responseId": e,
+            "INVCode": label.labelConsecutive
+          }
+        });
+      }
+    } else if (this.questions[index].questionType == 1) {
+      answer = {
+        "sessionId": user.user_id,
+        "responseId": this.CheckedOption,
+        "INVCode": label.labelConsecutive
+      }
+    }
 
-    if (options.length > 0) {
-      options.forEach(function (e) {
-        answer = {
-          "sessionId": user.user_id,
-          "responseId": e,
-          "INVCode": label[0].LabelConsecutive
-        }
-      });
-
+    if (options.length > 0 || answer) {
       const Poll = await this.services.SaveAnswer(answer).toPromise().catch(() => {
         return "";
       });
-  
+
       if (Poll == "") this.toaster.presentErrorToast(this.Error);
-        
-      this.slides.slideNext();
+
+      if (isLast) this.alert.presentAlertConfirm();
+      else this.slides.slideNext();
     } else this.toaster.presentErrorToast(this.SelectAtLeastOne);
 
-      this.loadingService.dismissLoading();
+    this.loadingService.dismissLoading();
   }
 
   private sendEmail() {
@@ -159,7 +157,7 @@ export class SlidesComponent implements OnInit {
 
   }
 
-  private async sendPoll(option) {
+  public async sendPoll(option) {
     this.loadingService.presentLoading();
 
     const Login = await this.storage.get("USER_INFO");
@@ -167,7 +165,7 @@ export class SlidesComponent implements OnInit {
 
     const PollResults = JSON.stringify(this.PollResults);
 
-    this.answers.INVCode = defaultInvCode[0].INVCodeId;
+    this.answers.INVCode = defaultInvCode[0].invCodeId;
     this.answers.Email = Login.user_email;
     this.answers.Name = Login.user_name;
 
@@ -178,7 +176,6 @@ export class SlidesComponent implements OnInit {
         this.response = response;
         this.loadingService.dismissLoading();
         this.toaster.presentToast(this.AnswerSend);
-        //this.router.navigateForward(["charts"]);
 
         this.alert.presentAlertConfirm();
       },
@@ -188,4 +185,5 @@ export class SlidesComponent implements OnInit {
       }
     );
   }
+
 }

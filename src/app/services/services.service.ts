@@ -27,7 +27,7 @@ export class ServicesService {
     };
 
     const httpOptions = {
-      headers: new HttpHeaders({ "Content-Type": "application/json" })    
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
     };
 
     return this.http.post<any>(`${this.AZURE_API_URL}`, body, httpOptions);
@@ -37,29 +37,32 @@ export class ServicesService {
     return this.http.get<any>(`${this.AZURE_API_URL}`);
   }
 
-  public getPoll(language:string): Observable<any> {
-     const httpOptions = {
-       headers: new HttpHeaders({ "x-functions-key": "Yq2EP5wrdWXv4XyNHogdvGDPC39zu0jenGH0R2bqaocpA5o/PLaVUQ==" })    
-     };
+  public getPoll(language: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ "x-functions-key": "Yq2EP5wrdWXv4XyNHogdvGDPC39zu0jenGH0R2bqaocpA5o/PLaVUQ==" })
+    };
 
-    //  { "x-functions-key": "Yq2EP5wrdWXv4XyNHogdvGDPC39zu0jenGH0R2bqaocpA5o/PLaVUQ==",
-    //    'Access-Control-Allow-Origin': '*',
-    //    'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-    //    'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token' }
-    
     return this.http.get<any>(`https://wfinvpollservices.azurewebsites.net/api/GetQuestionCatalog?language=${language.toUpperCase()}`, httpOptions);
+  }
+
+  public getProductInfo(code: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ "x-functions-key": "Yq2EP5wrdWXv4XyNHogdvGDPC39zu0jenGH0R2bqaocpA5o/PLaVUQ==" })
+    };
+
+    return this.http.get<any>(`https://wfinvpollservices.azurewebsites.net/api/GetProductInfo?code=${code}`, httpOptions);
   }
 
 
   public PostNewUser(login): Observable<any> {
     const body = {
       fullName: login.Name,
-      email: login.Email,      
+      email: login.Email,
       language: login.Language
     };
 
     const httpOptions = {
-      headers: new HttpHeaders({ "x-functions-key": "Yq2EP5wrdWXv4XyNHogdvGDPC39zu0jenGH0R2bqaocpA5o/PLaVUQ==", "Content-Type": "application/json" })    
+      headers: new HttpHeaders({ "x-functions-key": "Yq2EP5wrdWXv4XyNHogdvGDPC39zu0jenGH0R2bqaocpA5o/PLaVUQ==", "Content-Type": "application/json" })
     };
 
     return this.http.post<any>("https://wfinvpollservices.azurewebsites.net/api/GenerateSession", body, httpOptions);
@@ -67,10 +70,18 @@ export class ServicesService {
 
   public SaveAnswer(answer): Observable<any> {
     const httpOptions = {
-      headers: new HttpHeaders({ "x-functions-key": "Yq2EP5wrdWXv4XyNHogdvGDPC39zu0jenGH0R2bqaocpA5o/PLaVUQ==", "Content-Type": "application/json" })    
+      headers: new HttpHeaders({ "x-functions-key": "Yq2EP5wrdWXv4XyNHogdvGDPC39zu0jenGH0R2bqaocpA5o/PLaVUQ==", "Content-Type": "application/json" })
     };
-    
+
     return this.http.post<any>("https://wfinvpollservices.azurewebsites.net/api/SaveQuestionAnswer", answer, httpOptions);
+  }
+
+  public SaveLike(answer): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ "x-functions-key": "Yq2EP5wrdWXv4XyNHogdvGDPC39zu0jenGH0R2bqaocpA5o/PLaVUQ==", "Content-Type": "application/json" })
+    };
+
+    return this.http.post<any>("https://wfinvpollservices.azurewebsites.net/api/Like", answer, httpOptions);
   }
 
 }

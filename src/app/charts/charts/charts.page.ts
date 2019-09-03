@@ -29,7 +29,6 @@ export class ChartsPage {
     this.services.getAllResults().subscribe(
       (response: any) => {
         this.response = response;
-        debugger;
         this.loadingService.dismissLoading();
       },
       err => {

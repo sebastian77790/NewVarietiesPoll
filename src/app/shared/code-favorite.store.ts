@@ -9,7 +9,7 @@ import { CodeInfo } from '../extensions/models.model';
 export class FavoriteCodeStore {
     private _favoriteCodesSubject = new BehaviorSubject({});
 
-    constructor (private storage: Storage){
+    constructor(private storage: Storage) {
         this.loadInitialData();
     }
 
@@ -17,7 +17,7 @@ export class FavoriteCodeStore {
         return this._favoriteCodesSubject.asObservable();
     }
 
-    private loadInitialData(){
+    private loadInitialData() {
         this.storage.get('favoriteCodes').then(
             (favoriteCodes) => {
                 this._favoriteCodesSubject.next(favoriteCodes || {});
@@ -25,19 +25,19 @@ export class FavoriteCodeStore {
         )
     }
 
-    public toggleCode(codeInfo: CodeInfo){
+    public toggleCode(codeInfo: CodeInfo) {
         const favoriteCodes = this._favoriteCodesSubject.getValue();
 
-        if(codeInfo.Favorite){
-          codeInfo.Favorite = false;
-          delete favoriteCodes[codeInfo.INVCodeId];
-        } else{
-          codeInfo.Favorite = true;
-          favoriteCodes[codeInfo.INVCodeId] = codeInfo;
+        if (codeInfo.Favorite) {
+            codeInfo.Favorite = false;
+            delete favoriteCodes[codeInfo.invCodeId];
+        } else {
+            codeInfo.Favorite = true;
+            favoriteCodes[codeInfo.invCodeId] = codeInfo;
         }
-    
+
         this.storage.set('favoriteCodes', favoriteCodes).then(() => {
             this._favoriteCodesSubject.next(favoriteCodes);
         });
-      }
+    }
 }
